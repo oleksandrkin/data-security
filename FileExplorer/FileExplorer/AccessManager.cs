@@ -8,6 +8,6 @@ namespace FileExplorer
 {
     public class AccessManager
     {
-
+        
     }
 }
