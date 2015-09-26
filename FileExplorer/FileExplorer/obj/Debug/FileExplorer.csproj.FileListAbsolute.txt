@@ -1,1 +1,10 @@
 D:\Repositories\DataSecurity\FileExplorer\FileExplorer\bin\Debug\FileExplorer.exe.config
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\bin\Debug\FileExplorer.exe
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\bin\Debug\FileExplorer.pdb
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.csprojResolveAssemblyReference.cache
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.MainForm.resources
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.LoginForm.resources
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.Properties.Resources.resources
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.csproj.GenerateResource.Cache
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.exe
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.pdb
