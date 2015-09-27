@@ -18,9 +18,16 @@ namespace FileExplorer
             ReadAccessTable();
         }
 
+        public User CurrentUser { get; set; }
+
         public bool Authorization(string name, string password)
         {
-            return users.Any(user => user.Name == name && user.Password == password);
+            foreach (User user in users.Where(user => user.Name == name && user.Password == password))
+            {
+                CurrentUser = user;
+                return true;
+            }
+            return false;
         }
 
         private void ReadAccessTable()

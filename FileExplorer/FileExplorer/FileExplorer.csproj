@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="AccessManager.cs" />
     <Compile Include="CaptchaGenerator.cs" />
+    <Compile Include="FileSystem.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>

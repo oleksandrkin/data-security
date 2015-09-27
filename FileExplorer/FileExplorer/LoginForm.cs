@@ -13,10 +13,10 @@ namespace FileExplorer
     public partial class LoginForm : Form
     {
         private readonly AccessManager accessManager;
-        private readonly Form parentForm;
+        private readonly MainForm parentForm;
         private int captchaValue;
 
-        public LoginForm(AccessManager am, Form sender)
+        public LoginForm(AccessManager am, MainForm sender)
         {
             InitializeComponent();
             accessManager = am;
@@ -26,6 +26,23 @@ namespace FileExplorer
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (captchaAnswerTextBox.Text == ""
+                || passwordTextBox.Text == ""
+                || loginTextBox.Text == "") return;
+
+            foreach (var ch in captchaAnswerTextBox.Text)
+            {
+                if (Char.IsDigit(ch))
+                {
+                }
+                else
+                {
+                    MessageBox.Show(@"Captcha must be a number. Try again!");
+                    captchaAnswerTextBox.Clear();
+                    return;
+                }
+            }
+
             if (Convert.ToInt32(captchaAnswerTextBox.Text) == captchaValue)
             {
                 if (accessManager.Authorization(loginTextBox.Text, passwordTextBox.Text))

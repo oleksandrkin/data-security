@@ -16,7 +16,7 @@ namespace FileExplorer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainForm mainForm = new MainForm();
+            new MainForm();
             Application.Run();
         }
     }
