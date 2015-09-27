@@ -40,6 +40,7 @@
             this.captchaAnswerTextBox = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.refreshButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -105,7 +106,7 @@
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '#';
             this.passwordTextBox.Size = new System.Drawing.Size(220, 20);
-            this.passwordTextBox.TabIndex = 1;
+            this.passwordTextBox.TabIndex = 2;
             // 
             // checkBox1
             // 
@@ -113,7 +114,7 @@
             this.checkBox1.Location = new System.Drawing.Point(62, 75);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(99, 17);
-            this.checkBox1.TabIndex = 2;
+            this.checkBox1.TabIndex = 6;
             this.checkBox1.Text = "show password";
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
@@ -130,7 +131,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button1.Location = new System.Drawing.Point(12, 131);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(270, 30);
+            this.button1.Size = new System.Drawing.Size(130, 30);
             this.button1.TabIndex = 4;
             this.button1.Text = "Sign in";
             this.button1.UseVisualStyleBackColor = true;
@@ -147,11 +148,24 @@
             this.refreshButton.UseVisualStyleBackColor = true;
             this.refreshButton.Click += new System.EventHandler(this.refreshButton_Click);
             // 
+            // button2
+            // 
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button2.Location = new System.Drawing.Point(152, 131);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(130, 30);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Exit";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(294, 172);
+            this.ControlBox = false;
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.refreshButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.captchaAnswerTextBox);
@@ -168,8 +182,7 @@
             this.MinimizeBox = false;
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LoginForm";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.LoginForm_FormClosed);
+            this.Text = "Authorization";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,5 +201,6 @@
         private System.Windows.Forms.TextBox captchaAnswerTextBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button refreshButton;
+        private System.Windows.Forms.Button button2;
     }
 }

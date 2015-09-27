@@ -12,7 +12,7 @@ namespace FileExplorer
         public static string Generate(out int captchaValue)
         {
             Random r = new Random();
-            int a = r.Next() % 10 + 1;
+            int a = r.Next() % 9 + 1;
             int b = r.Next() % 10 + 1;
             int x = r.Next() % 10 + 1;
             int y = a * x + b;

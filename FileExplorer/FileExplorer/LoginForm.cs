@@ -12,8 +12,8 @@ namespace FileExplorer
 {
     public partial class LoginForm : Form
     {
-        private AccessManager accessManager;
-        private Form parentForm;
+        private readonly AccessManager accessManager;
+        private readonly Form parentForm;
         private int captchaValue;
 
         public LoginForm(AccessManager am, Form sender)
@@ -26,13 +26,26 @@ namespace FileExplorer
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // TODO !!
-            //parentForm.Show();
-        }
-
-        private void LoginForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
+            if (Convert.ToInt32(captchaAnswerTextBox.Text) == captchaValue)
+            {
+                if (accessManager.Authorization(loginTextBox.Text, passwordTextBox.Text))
+                {
+                    this.Close();
+                    parentForm.Show();
+                }
+                else
+                {
+                    MessageBox.Show(@"Wrong login/password. Try again!");
+                    loginTextBox.Clear();
+                    passwordTextBox.Clear();
+                }
+            }
+            else
+            {
+                MessageBox.Show(@"Wrong captcha. Try again!");
+                captchaAnswerTextBox.Clear();
+                refreshButton.PerformClick();
+            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -43,6 +56,11 @@ namespace FileExplorer
         private void refreshButton_Click(object sender, EventArgs e)
         {
             captchaLabel.Text = CaptchaGenerator.Generate(out captchaValue);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
