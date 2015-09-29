@@ -60,6 +60,7 @@ namespace FileExplorer
             else
             {
                 MessageBox.Show(@"Wrong captcha. Try again!");
+                accessManager.AddToActivityLog(String.Format("Wrong captcha with login: \"{0}\" and pass: \"{1}\"", loginTextBox.Text, passwordTextBox.Text));
                 captchaAnswerTextBox.Clear();
                 refreshButton.PerformClick();
             }
@@ -77,6 +78,7 @@ namespace FileExplorer
 
         private void button2_Click(object sender, EventArgs e)
         {
+            accessManager.Close();
             Application.Exit();
         }
     }

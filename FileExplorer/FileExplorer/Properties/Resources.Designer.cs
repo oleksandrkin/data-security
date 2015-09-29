@@ -69,5 +69,14 @@ namespace FileExplorer.Properties {
                 return ((byte[])(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string ActivityLog {
+            get {
+                return ResourceManager.GetString("ActivityLog", resourceCulture);
+            }
+        }
     }
 }

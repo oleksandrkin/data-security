@@ -21,6 +21,16 @@ namespace FileExplorer
 
         public AccessType AccessType { get; set; }
 
+        public List<Directory> Directories { get; set; }
+
+        public User(string name, string password, AccessType accessType, List<Directory> directories)
+        {
+            Name = name;
+            Password = password;
+            AccessType = accessType;
+            Directories = directories;
+        }
+
         public User(string name, string password, AccessType accessType)
         {
             Name = name;

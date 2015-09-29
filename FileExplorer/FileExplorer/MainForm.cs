@@ -13,24 +13,23 @@ namespace FileExplorer
     public partial class MainForm : Form
     {
         private AccessManager accessManager;
-        private FileSystem fileSystem;
 
         public MainForm()
         {
             InitializeComponent();
-            accessManager = new AccessManager();
-            fileSystem = new FileSystem(treeView1);    
+            accessManager = new AccessManager();  
             (new LoginForm(accessManager, this)).Show();
-            fileSystem.Show();
         }
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            accessManager.Close();
             Application.Exit();
         }
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            accessManager.Close();
             Application.Exit();
         }
 
@@ -38,6 +37,39 @@ namespace FileExplorer
         {
             this.Hide();
             (new LoginForm(accessManager, this)).Show();
+        }
+
+        private void MainForm_Shown(object sender, EventArgs e)
+        {
+            adminToolStripMenuItem.Visible = accessManager.CurrentUser.AccessType == AccessType.Admin;
+            accessManager.Show(treeView1);
+        }
+
+        private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+            (new AddUserForm(this, accessManager)).Show();
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            accessManager.Copy();
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            accessManager.Paste();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            accessManager.Delete();
+        }
+
+        private void showLogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+            (new UsersActivityForm(this, accessManager)).Show();
         }
     }
 }

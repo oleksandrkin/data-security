@@ -8,3 +8,5 @@ D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.Pr
 D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.csproj.GenerateResource.Cache
 D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.exe
 D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.pdb
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.AddUserForm.resources
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.UsersActivityForm.resources
