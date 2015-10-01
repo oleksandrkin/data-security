@@ -1,0 +1,57 @@
+30.09.2015 2:11:13 : User: admin log in successfully
+30.09.2015 2:11:35 : User: admin copy "programFiles.txt" in folder "C"
+30.09.2015 2:11:37 : User: admin paste "programFiles.txt" in folder "D"
+30.09.2015 2:13:47 : Wrong captcha with login: "admin" and pass: "admin"
+30.09.2015 2:13:53 : User: admin log in successfully
+30.09.2015 2:13:58 : User: admin copy "programFiles.txt" in folder "C"
+30.09.2015 2:14:01 : User: admin paste "programFiles.txt" in folder "D"
+30.09.2015 2:14:03 : User: admin delete "programFiles.txt" from folder "C"
+30.09.2015 2:14:03 : User: admin delete "programFiles.txt" from folder "D"
+30.09.2015 2:14:54 : User: admin log in successfully
+30.09.2015 2:21:17 : User: admin log in successfully
+30.09.2015 2:21:34 : User: admin copy "programFiles.txt" in folder "C"
+30.09.2015 2:21:37 : User: admin paste "programFiles.txt" in folder "D"
+30.09.2015 2:21:47 : User: admin delete "programFiles.txt" from folder "C"
+30.09.2015 2:21:47 : User: admin delete "programFiles.txt" from folder "D"
+30.09.2015 13:07:03 : Wrong captcha with login: "admin" and pass: "admin"
+30.09.2015 13:07:07 : User: admin log in successfully
+30.09.2015 13:07:17 : User: admin copy "d1.txt" in folder "D"
+30.09.2015 13:07:19 : User: admin paste "d1.txt" in folder "E"
+30.09.2015 13:07:24 : User: admin delete "d1.txt" from folder "D"
+30.09.2015 13:07:24 : User: admin delete "d1.txt" from folder "E"
+30.09.2015 13:08:12 : User: admin log in successfully
+30.09.2015 13:12:26 : User: admin log in successfully
+30.09.2015 13:12:32 : User: admin copy "d1.txt" in folder "D"
+30.09.2015 13:12:36 : User: admin paste "d1.txt" in folder "E"
+30.09.2015 13:13:09 : User: admin log in successfully
+30.09.2015 13:13:15 : User: admin copy "d3.txt" in folder "D"
+30.09.2015 14:04:12 : Wrong captcha with login: "admin" and pass: "admin"
+30.09.2015 14:04:21 : User: admin log in successfully
+30.09.2015 14:04:52 : User: sasha log in successfully
+30.09.2015 14:05:08 : User: sasha log in successfully
+30.09.2015 14:05:34 : User: admin log in successfully
+30.09.2015 14:06:49 : User: admin log in successfully
+30.09.2015 14:07:05 : User: sasha log in successfully
+30.09.2015 14:08:27 : User: admin log in successfully
+30.09.2015 14:09:02 : User: sasha log in successfully
+30.09.2015 14:12:25 : User: sasha log in successfully
+30.09.2015 14:13:50 : Wrong captcha with login: "admin" and pass: "admin"
+30.09.2015 14:14:03 : User: admin log in successfully
+30.09.2015 14:14:28 : Wrong captcha with login: "admin" and pass: "admin"
+30.09.2015 14:14:31 : User: admin log in successfully
+30.09.2015 14:14:39 : User: sasha log in successfully
+30.09.2015 14:16:53 : Wrong captcha with login: "admin" and pass: "admin"
+30.09.2015 14:16:56 : User: admin log in successfully
+30.09.2015 14:17:05 : User: sasha log in successfully
+30.09.2015 14:20:49 : User: admin log in successfully
+30.09.2015 14:21:13 : User: sasha log in successfully
+30.09.2015 14:23:36 : User: admin log in successfully
+30.09.2015 14:24:08 : User: sasha log in successfully
+30.09.2015 14:43:12 : User: admin log in successfully
+30.09.2015 14:44:17 : User: admin log in successfully
+30.09.2015 14:44:38 : User: sasha log in successfully
+30.09.2015 14:45:21 : User: sasha wWrong captcha
+30.09.2015 14:48:29 : User: admin log in successfully
+30.09.2015 14:49:02 : User: admin copy "d2.txt" in folder "D"
+30.09.2015 14:49:05 : User: admin paste "d2.txt" in folder "F"
+30.09.2015 14:49:57 : User: sasha log in successfully

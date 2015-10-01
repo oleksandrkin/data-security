@@ -10,3 +10,4 @@ D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.ex
 D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.pdb
 D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.AddUserForm.resources
 D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.UsersActivityForm.resources
+D:\Repositories\DataSecurity\FileExplorer\FileExplorer\obj\Debug\FileExplorer.CaptchaForm.resources

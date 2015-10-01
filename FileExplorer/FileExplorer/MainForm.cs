@@ -35,14 +35,15 @@ namespace FileExplorer
 
         private void showFoldersToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.Show();
             this.Hide();
             (new LoginForm(accessManager, this)).Show();
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
         {
-            adminToolStripMenuItem.Visible = accessManager.CurrentUser.AccessType == AccessType.Admin;
-            accessManager.Show(treeView1);
+            //adminToolStripMenuItem.Visible = accessManager.CurrentUser.AccessType == AccessType.Admin;
+            //accessManager.Show(treeView1);
         }
 
         private void addUserToolStripMenuItem_Click(object sender, EventArgs e)
@@ -71,5 +72,22 @@ namespace FileExplorer
             this.Enabled = false;
             (new UsersActivityForm(this, accessManager)).Show();
         }
+
+        private void MainForm_Activated(object sender, EventArgs e)
+        {
+            adminToolStripMenuItem.Visible = accessManager.CurrentUser.AccessType == AccessType.Admin;
+            treeView1.Nodes.Clear();
+            treeView1.Nodes.Add("Computer");
+            timer1.Start();
+            accessManager.Show(treeView1);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+            timer1.Stop();
+            (new CaptchaForm(this, accessManager)).Show();
+        }
+
     }
 }

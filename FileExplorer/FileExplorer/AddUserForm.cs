@@ -72,7 +72,7 @@ namespace FileExplorer
             List<Directory> directories = new List<Directory>();
             foreach (var tuple in chechBoxs)
             {
-                if (tuple.Item2.Checked || tuple.Item2.Checked)
+                if (tuple.Item2.Checked || tuple.Item3.Checked)
                     directories.Add(new Directory(tuple.Item1, tuple.Item2.Checked, tuple.Item3.Checked));
             }
             User newUser = new User(loginTextBox.Text,

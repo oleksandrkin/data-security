@@ -173,6 +173,7 @@ namespace FileExplorer
             }
         }
 
+        // TODO: fixed deleting files in different folders
         public void Delete()
         {
             if (treeView.SelectedNode != null)
@@ -204,6 +205,7 @@ namespace FileExplorer
                                         file.Delete();
                                 }
                                 directory.Delete();
+                                AddToActivityLog(CurrentUser, String.Format("delete  folder \"{0}\"", directory.Name));
                                 deleted = true;
                             }
                         }

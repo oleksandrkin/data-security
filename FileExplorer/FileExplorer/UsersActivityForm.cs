@@ -18,10 +18,12 @@ namespace FileExplorer
         {
             InitializeComponent();
             mainForm = main;
+            accessManager.ActivityLog.Reverse();
             foreach (var str in accessManager.ActivityLog)
             {
                 textBox1.AppendText(str + "\n");
             }
+            accessManager.ActivityLog.Reverse();
         }
 
         private void UsersActivityForm_FormClosed(object sender, FormClosedEventArgs e)
