@@ -19,6 +19,10 @@ namespace FileExplorer
         {  
             ReadAccessTable();
             ReadActivityLog();
+            CriticalAccess = 0;
+            CriticalCaptcha = 0;
+            CriticalDelete = 0;
+
         }
 
         public User CurrentUser { get; set; }
@@ -27,7 +31,11 @@ namespace FileExplorer
         {
             foreach (User user in Users.Where(user => user.Name == name && user.Password == password))
             {
-                CurrentUser = user;
+                if (CurrentUser != user)
+                {
+                    CriticalDelete = 0;
+                    CurrentUser = user;
+                }
                 AddToActivityLog(CurrentUser, "log in successfully");
                 return true;
             }
@@ -193,7 +201,8 @@ namespace FileExplorer
                                 {
                                     file.Delete();
                                     deleted = true;
-                                    AddToActivityLog(CurrentUser, String.Format("delete \"{0}\" from folder \"{1}\"", file.Name, directory.Name));
+                                    bool control = ++CriticalDelete > CriticalDeleteControl;
+                                    AddToActivityLog(CurrentUser, String.Format("delete \"{0}\" from folder \"{1}\"; Control number: {3}", file.Name, directory.Name, CriticalDelete), control);
                                 }
                             }
 
@@ -224,24 +233,39 @@ namespace FileExplorer
 
         public List<String> ActivityLog { get; set; }
 
+        public List<String> CriticalActivityLog { get; set; }
+
+        public int CriticalAccess { get; set; }
+        public int CriticalAccessControl = 2;
+
+        public int CriticalDelete { get; set; }
+        public int CriticalDeleteControl = 2;
+
+        public int CriticalCaptcha { get; set; }
+        public int CriticalCaptchaControl = 2;
+
         public void ReadActivityLog()
         {
             ActivityLog = File.ReadAllLines(@"../../Resources/ActivityLog.txt").ToList();
+            CriticalActivityLog = File.ReadAllLines(@"../../Resources/CriticalActivityLog.txt").ToList();
         }
 
         public void WriteActivityLog()
         {
             File.WriteAllLines(@"../../Resources/ActivityLog.txt", ActivityLog);
+            File.WriteAllLines(@"../../Resources/CriticalActivityLog.txt", CriticalActivityLog);
         }
 
-        public void AddToActivityLog(String message)
+        public void AddToActivityLog(String message, bool critical = false)
         {
             ActivityLog.Add(String.Format("{0} : {1}", DateTime.Now, message));
+            if (critical) CriticalActivityLog.Add(String.Format("{0} : {1}", DateTime.Now, message));
         }
 
-        public void AddToActivityLog(User user, String message)
+        public void AddToActivityLog(User user, String message, bool critical = false)
         {
             ActivityLog.Add(String.Format("{0} : User: {1} {2}", DateTime.Now, user.Name, message));
+            if (critical) CriticalActivityLog.Add(String.Format("{0} : User: {1} {2}", DateTime.Now, user.Name, message));
         }
 
         public void Close()

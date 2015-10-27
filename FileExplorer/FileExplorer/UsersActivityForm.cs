@@ -24,6 +24,12 @@ namespace FileExplorer
                 textBox1.AppendText(str + "\n");
             }
             accessManager.ActivityLog.Reverse();
+            accessManager.CriticalActivityLog.Reverse();
+            foreach (var str in accessManager.CriticalActivityLog)
+            {
+                textBox2.AppendText(str + "\n");
+            }
+            accessManager.CriticalActivityLog.Reverse();
         }
 
         private void UsersActivityForm_FormClosed(object sender, FormClosedEventArgs e)

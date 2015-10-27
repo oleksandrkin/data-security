@@ -21,7 +21,7 @@ namespace FileExplorer
             InitializeComponent();
             accessManager = am;
             parentForm = sender;
-            captchaLabel.Text  = CaptchaGenerator.Generate(out captchaValue);
+            captchaLabel.Text = CaptchaGenerator.Generate(out captchaValue);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,6 +53,8 @@ namespace FileExplorer
                 else
                 {
                     MessageBox.Show(@"Wrong login/password. Try again!");
+                    bool control = ++accessManager.CriticalAccess > accessManager.CriticalAccessControl;
+                    accessManager.AddToActivityLog(String.Format("Wrong login/password: \"{0}\" and pass: \"{1}\"; Critical number: {2}", loginTextBox.Text, passwordTextBox.Text, accessManager.CriticalAccess), control);
                     loginTextBox.Clear();
                     passwordTextBox.Clear();
                 }
@@ -60,7 +62,8 @@ namespace FileExplorer
             else
             {
                 MessageBox.Show(@"Wrong captcha. Try again!");
-                accessManager.AddToActivityLog(String.Format("Wrong captcha with login: \"{0}\" and pass: \"{1}\"", loginTextBox.Text, passwordTextBox.Text));
+                bool control = ++accessManager.CriticalCaptcha > accessManager.CriticalCaptchaControl;
+                accessManager.AddToActivityLog(String.Format("Wrong captcha with login: \"{0}\" and pass: \"{1}\"; Critical number: {2}", loginTextBox.Text, passwordTextBox.Text, accessManager.CriticalCaptcha), control);
                 captchaAnswerTextBox.Clear();
                 refreshButton.PerformClick();
             }

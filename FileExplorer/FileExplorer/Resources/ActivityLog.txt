@@ -55,3 +55,19 @@
 30.09.2015 14:49:02 : User: admin copy "d2.txt" in folder "D"
 30.09.2015 14:49:05 : User: admin paste "d2.txt" in folder "F"
 30.09.2015 14:49:57 : User: sasha log in successfully
+10/27/2015 11:51:50 AM : User: sasha log in successfully
+10/27/2015 11:52:00 AM : User: admin log in successfully
+10/27/2015 12:28:24 PM : Wrong captcha with login: "a" and pass: "a"
+10/27/2015 12:28:28 PM : Fail to log in with login: "a" and pass: "a"
+10/27/2015 12:28:29 PM : Wrong login/password: "a" and pass: "a"
+10/27/2015 12:29:01 PM : Fail to log in with login: "admin" and pass: "adm"
+10/27/2015 12:29:02 PM : Wrong login/password: "admin" and pass: "adm"
+10/27/2015 12:29:21 PM : Wrong captcha with login: "admin" and pass: "admin"
+10/27/2015 12:29:23 PM : User: admin log in successfully
+10/27/2015 12:30:40 PM : Wrong captcha with login: "a" and pass: "a"
+10/27/2015 12:30:42 PM : Wrong captcha with login: "a" and pass: "a"
+10/27/2015 12:30:44 PM : Wrong captcha with login: "a" and pass: "a"
+10/27/2015 12:30:53 PM : User: admin log in successfully
+10/27/2015 12:35:50 PM : User: admin log in successfully
+10/27/2015 12:36:43 PM : Wrong captcha with login: "admin" and pass: "admin"; Critical number: 1
+10/27/2015 12:36:47 PM : User: admin log in successfully
