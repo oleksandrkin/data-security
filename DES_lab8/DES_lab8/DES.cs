@@ -12,24 +12,22 @@ namespace DES_lab8
 
     public class DES
     {
-        private List<BinaryNumber> keys;
-        private const int KeysLength = 48;
+        private BinaryNumber key;
+        private BinaryNumber cKey;
+        private BinaryNumber tempCKey;
+        private BinaryNumber dKey;
+        private BinaryNumber tempDKey;
+        private const int KeyLength = 64;
         private const int DesSteps = 16;
-        private const int KeysNumber = DesSteps;
         private DESMode mode;
         private List<BinaryNumber> encrypted;
         private Random r = new Random();
 
         public DES()
         {
-            GenerateKeys();
-        }
-
-        private void GenerateKeys()
-        {
-            keys = new List<BinaryNumber>();
-            for(int i = 0; i < KeysNumber; i++)
-                keys.Add(new BinaryNumber(KeysLength, r));
+            key = new BinaryNumber(KeyLength, r);
+            cKey = Block(LeftPC1, key);
+            dKey = Block(RightPC1, key);
         }
 
         public string Encript(string message)
@@ -105,18 +103,34 @@ namespace DES_lab8
         private BinaryNumber Function(BinaryNumber input, int stepId)
         {
             BinaryNumber eOut = Block(E, input);
-            int id;
-            if (mode == DESMode.Encription)
-                id = stepId;
-            else
-                id = DesSteps - stepId - 1;
-            List<BinaryNumber> sInputs = (eOut ^ keys[id]).Divide(8);
+            List<BinaryNumber> sInputs = (eOut ^ GetKey(stepId)).Divide(8);
             BinaryNumber sOut = new BinaryNumber();
             for(int i = 0; i < sInputs.Count; i++)
             {
                 sOut.Add(SBlock(sInputs[i], i));
             }
             return Block(P, sOut);
+        }
+
+
+        private BinaryNumber GetKey(int stepId)
+        {
+            if (stepId == 0)
+            {
+                tempCKey = cKey;
+                tempDKey = dKey;
+            }
+            if (mode == DESMode.Encription)
+            {
+                tempCKey.ShiftLeft(Rotation[stepId]);
+                tempDKey.ShiftLeft(Rotation[stepId]);
+            }
+            else
+            {
+                tempCKey.ShiftRight(Rotation[stepId]);
+                tempDKey.ShiftRight(Rotation[stepId]);
+            }
+            return Block(PC2, tempCKey + tempDKey);
         }
 
         private BinaryNumber SBlock(BinaryNumber input, int id)
@@ -287,6 +301,50 @@ namespace DES_lab8
             }
         };
 
+        private int[][] LeftPC1 =
+        {
+            new [] {57	,49	,41	,33	,25	,17	,9 },
+            new [] {1	,58	,50	,42	,34	,26	,18},
+            new [] {10	,2	,59	,51	,43	,35	,27},
+            new [] {19	,11	,3	,60	,52	,44	,36}
+        };
 
+        private int[][] RightPC1 =
+        {
+            new [] {63	,55	,47	,39	,31	,23	,15},
+            new [] {7	,62	,54	,46	,38	,30	,22},
+            new [] {14	,6	,61	,53	,45	,37	,29},
+            new [] {21	,13	,5	,28	,20	,12	,4}
+        };
+
+        private int[][] PC2 =
+        {
+            new [] {14	,17	,11	,24	,1	,5	,3	,28},
+            new [] {15	,6	,21	,10	,23	,19	,12	,4}, 
+            new [] {26	,8	,16	,7	,27	,20	,13	,2},
+            new [] {41	,52	,31	,37	,47	,55	,30	,40},
+            new [] {51	,45	,33	,48	,44	,49	,39	,56},
+            new [] {34	,53	,46	,42	,50	,36	,29	,32}
+        };
+
+        private int[] Rotation =
+        {
+            1,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1
+        };
     }
 }

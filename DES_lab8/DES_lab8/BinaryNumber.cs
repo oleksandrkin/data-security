@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace DES_lab8
@@ -100,6 +102,27 @@ namespace DES_lab8
             return Convert.ToInt32(ToString(), 2);
         }
 
+        public void ShiftLeft(int n)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                binary.Add(binary.First());
+                binary.RemoveAt(0);
+            }
+        }
+
+        public void ShiftRight(int n)
+        {
+            List<int> newBinary = new List<int>();
+            for (int i = 0; i < n; i++)
+            {
+                newBinary.Add(binary.Last());
+                binary.RemoveAt(Length - 1);
+            }
+            newBinary.AddRange(binary);
+            binary = newBinary;
+        }
+
         public static BinaryNumber operator ^(BinaryNumber lhs, BinaryNumber rhs)
         {
             List<int> newBinary = new List<int>();
@@ -108,6 +131,14 @@ namespace DES_lab8
                 newBinary.Add(lhs[i] ^ rhs[i]);
             }
             return new BinaryNumber(newBinary);
+        }
+
+        public static BinaryNumber operator +(BinaryNumber lhs, BinaryNumber rhs)
+        {
+            BinaryNumber res = new BinaryNumber();
+            res.Add(lhs);
+            res.Add(rhs);
+            return res;
         }
     }
 }
