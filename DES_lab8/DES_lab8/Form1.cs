@@ -13,14 +13,18 @@ namespace DES_lab8
 {
     public partial class Form1 : Form
     {
+        private DES des;
+
         public Form1()
         {
             InitializeComponent();
+            des = new DES();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            string a = des.Encript("avbjdggfslgdhs");
+            string b = des.Decript();
         }
     }
 }

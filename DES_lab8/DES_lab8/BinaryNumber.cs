@@ -1,31 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DES_lab8
 {
     public class BinaryNumber
     {
         private List<int> binary;
-        private const int N = 8;
 
-        public BinaryNumber(byte[] data)
+        public BinaryNumber()
         {
             binary = new List<int>();
-            foreach (var b in data)
+        }
+
+        public BinaryNumber(BinaryNumber bn)
+        {
+            binary = new List<int>();
+            binary.AddRange(bn.Value);
+        }
+
+        public BinaryNumber(int length, Random r)
+        {
+            binary = new List<int>();
+            for (int i = 0; i < length; i++)
             {
-                string binString = Convert.ToString(b, 2);
-                for (int i = 0; i < N; i++)
-                {
-                    int id = N - binString.Length;
-                    if (i < id)
-                        binary.Add(0);
-                    else
-                        binary.Add(binString[i - id] - 48);
-                }
+                binary.Add(r.Next()%2);
             }
         }
 
@@ -39,29 +39,73 @@ namespace DES_lab8
             get { return binary; }
         }
 
-        public static byte[] ToBytes(BinaryNumber value)
+        public void Add(int i)
         {
-            List<byte> byteList = new List<byte>();
-            string b = "";
-            for (int i = 0; i < value.Value.Count; i++)
-            {
-                b += value.Value[i];
-                if ((i+1)%8 == 0)
-                {
-                    string t = b.TrimStart('0');
-                    byteList.Add(Convert.ToByte(t, 2));
-                    b = "";
-                }
-            }
-            return byteList.ToArray();
+            binary.Add(i);
         }
 
-        public static BinaryNumber operator^(BinaryNumber lhs, BinaryNumber rhs)
+        public void Add(BinaryNumber bn)
+        {
+            binary.AddRange(bn.Value);
+        }
+
+        public int Length
+        {
+            get { return binary.Count; }
+        }
+
+        public void Clear()
+        {
+            binary.Clear();
+        }
+
+        public List<BinaryNumber> Divide(int n)
+        {
+            List<BinaryNumber> parts = new List<BinaryNumber>();
+            BinaryNumber part = new BinaryNumber();
+            for (int i = 0; i < Length; i++)
+            {
+                part.Add(binary[i]);
+                if ((i + 1)%(Length/n) == 0)
+                {
+                    parts.Add(new BinaryNumber(part));
+                    part.Clear();
+                }
+            }
+            return parts;
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            foreach (var i in binary)
+            {
+                sb.Append(i);
+            }
+            return sb.ToString();
+        }
+
+        public int this[int i]
+        {
+            get { return binary[i]; }
+        }
+
+        public int Last
+        {
+            get { return binary.Last(); }
+        }
+
+        public int ToInt()
+        {
+            return Convert.ToInt32(ToString(), 2);
+        }
+
+        public static BinaryNumber operator ^(BinaryNumber lhs, BinaryNumber rhs)
         {
             List<int> newBinary = new List<int>();
-            for (int i = 0; i < lhs.Value.Count; i++)
+            for (int i = 0; i < lhs.Length; i++)
             {
-                newBinary.Add(lhs.Value[i] ^ rhs.Value[i]);
+                newBinary.Add(lhs[i] ^ rhs[i]);
             }
             return new BinaryNumber(newBinary);
         }
