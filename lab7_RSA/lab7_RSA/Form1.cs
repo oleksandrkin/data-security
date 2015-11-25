@@ -30,7 +30,7 @@ namespace lab7_RSA
 
         private void button2_Click(object sender, EventArgs e)
         {
-            textBox4.Text = Encoding.UTF8.GetString(rsa.Decrypt(encrypted));
+            textBox4.Text = Encoding.ASCII.GetString(rsa.Decrypt(encrypted));
         }
     }
 }

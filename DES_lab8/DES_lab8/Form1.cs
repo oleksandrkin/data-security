@@ -18,13 +18,17 @@ namespace DES_lab8
         public Form1()
         {
             InitializeComponent();
-            des = new DES();
+            des = new DES(textBox1);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string a = des.Encript("avbjdggfslgdhs");
-            string b = des.Decript();
+            textBox2.Text = des.Encript(textBox1.Text);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox3.Text = des.Decript();
         }
     }
 }

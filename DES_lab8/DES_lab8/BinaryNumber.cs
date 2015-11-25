@@ -22,6 +22,15 @@ namespace DES_lab8
             binary.AddRange(bn.Value);
         }
 
+        public BinaryNumber(string str)
+        {
+            binary = new List<int>();
+            foreach (var ch in str)
+            {
+                binary.Add(ch - 48);
+            }
+        }
+
         public BinaryNumber(int length, Random r)
         {
             binary = new List<int>();

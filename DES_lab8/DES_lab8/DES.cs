@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Forms;
 
 namespace DES_lab8
 {
@@ -12,22 +13,33 @@ namespace DES_lab8
 
     public class DES
     {
-        private BinaryNumber key;
-        private BinaryNumber cKey;
-        private BinaryNumber tempCKey;
-        private BinaryNumber dKey;
-        private BinaryNumber tempDKey;
+        private List<BinaryNumber> keys;
         private const int KeyLength = 64;
         private const int DesSteps = 16;
         private DESMode mode;
         private List<BinaryNumber> encrypted;
         private Random r = new Random();
 
-        public DES()
+        private TextBox TEST;
+
+        public DES(TextBox textBox)
         {
-            key = new BinaryNumber(KeyLength, r);
-            cKey = Block(LeftPC1, key);
-            dKey = Block(RightPC1, key);
+            TEST = textBox;
+            BinaryNumber key = new BinaryNumber(KeyLength, r);
+            GenerateKeys(key);
+        }
+
+        private void GenerateKeys(BinaryNumber key)
+        {
+            keys = new List<BinaryNumber>();
+            BinaryNumber cKey = Block(LeftPC1, key);
+            BinaryNumber dKey = Block(RightPC1, key);
+            for (int i = 0; i < DesSteps; i++)
+            {
+                cKey.ShiftLeft(Rotation[i]);
+                dKey.ShiftLeft(Rotation[i]);
+                keys.Add(Block(PC2, new BinaryNumber(cKey + dKey)));
+            }
         }
 
         public string Encript(string message)
@@ -45,7 +57,7 @@ namespace DES_lab8
                     temp.Clear();
                 }
             }
-            encrypted = new List<BinaryNumber>();
+           encrypted = new List<BinaryNumber>();
             for (int i = 0; i < ipInput.Count; i++)
             {
                 encrypted.Add(Process(ipInput[i]));
@@ -81,14 +93,14 @@ namespace DES_lab8
                     }
                 }
             }
-            return Encoding.ASCII.GetString(decryptedBytes.ToArray());
+            return Encoding.Unicode.GetString(decryptedBytes.ToArray());
        }
 
         private BinaryNumber Process(BinaryNumber input)
         {
             List<BinaryNumber> ipOut = Block(IP, input).Divide(2);
-            BinaryNumber left = ipOut[0];
-            BinaryNumber right = ipOut[1];
+            BinaryNumber left = new BinaryNumber(ipOut[0]);
+            BinaryNumber right = new BinaryNumber(ipOut[1]);
             for (int i = 0; i < DesSteps; i++)
             {
                 BinaryNumber fOut = Function(new BinaryNumber(right), i);
@@ -96,8 +108,7 @@ namespace DES_lab8
                 right = new BinaryNumber(fOut^left);
                 left = new BinaryNumber(rTemp);
             }
-            left.Add(right);
-            return Block(IP_1, left);  
+            return Block(IP_1, new BinaryNumber(right + left));  
         }
 
         private BinaryNumber Function(BinaryNumber input, int stepId)
@@ -115,22 +126,12 @@ namespace DES_lab8
 
         private BinaryNumber GetKey(int stepId)
         {
-            if (stepId == 0)
-            {
-                tempCKey = cKey;
-                tempDKey = dKey;
-            }
+            int id;
             if (mode == DESMode.Encription)
-            {
-                tempCKey.ShiftLeft(Rotation[stepId]);
-                tempDKey.ShiftLeft(Rotation[stepId]);
-            }
+                id = stepId;
             else
-            {
-                tempCKey.ShiftRight(Rotation[stepId]);
-                tempDKey.ShiftRight(Rotation[stepId]);
-            }
-            return Block(PC2, tempCKey + tempDKey);
+                id = DesSteps - stepId - 1;
+            return keys[id];
         }
 
         private BinaryNumber SBlock(BinaryNumber input, int id)
@@ -159,10 +160,10 @@ namespace DES_lab8
 
         private byte[] PreprocessMessage(string message)
         {
-            byte[] byteMessage = Encoding.ASCII.GetBytes(message);
+            byte[] byteMessage = Encoding.Unicode.GetBytes(message);
             while (byteMessage.Length%8 != 0)
             {
-                byteMessage = Encoding.ASCII.GetBytes(message += " ");
+                byteMessage = Encoding.Unicode.GetBytes(message += " ");
             }
             return byteMessage;
         }
